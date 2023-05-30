@@ -1,6 +1,6 @@
 import {expect, test} from '@playwright/test';
 import {ProductsPage} from '../../pages/products/ProductsPage';
-import {loginTestHelper, ProductNames} from '../../helpers/common';
+import {loginTestHelper, productNames} from '../../helpers/common';
 import {ProductPage} from '../../pages/products/ProductPage';
 
 test.describe('User can work with all products', async () => {
@@ -9,7 +9,7 @@ test.describe('User can work with all products', async () => {
 
     const productsPage = new ProductsPage(page);
     const productPage = new ProductPage(page);
-    for (let productName of Object.values(ProductNames)) {
+    for (let productName of productNames) {
       await productsPage.openProduct(productName);
       await expect(await productPage.getProductTitle(), 'Product title is not correct').toEqual(productName);
       await productPage.takeScreenshotForProductImage(`${productName}.png`);

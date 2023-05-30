@@ -1,6 +1,6 @@
 import {PageObject} from '../PageObject';
 import {expect, Locator, Page} from '@playwright/test';
-import {ProductNames, takeScreenshotOfElement} from '../../helpers/common';
+import {takeScreenshotOfElement} from '../../helpers/common';
 
 export class ProductPage extends PageObject {
   protected readonly productTitle: Locator;
@@ -16,11 +16,11 @@ export class ProductPage extends PageObject {
     this.removeButton = page.locator("//button[@id='remove-sauce-labs-backpack']");
   }
 
-  async addToProduct(cardName: ProductNames) {
+  async addToProduct(cardName: string) {
     await this.page.locator(`${cardName}`).locator('Add to cart').click();
   }
 
-  async removeProduct(cardName: ProductNames) {
+  async removeProduct(cardName: string) {
     await this.page.locator(`${cardName}`).locator('Remove').click();
   }
 

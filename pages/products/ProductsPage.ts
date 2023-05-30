@@ -1,6 +1,5 @@
 import {PageObject} from '../PageObject';
 import {expect, Locator, Page} from '@playwright/test';
-import {ProductNames} from '../../helpers/common';
 
 export enum SortOptions {
   A_TO_Z = 'az',
@@ -21,12 +20,12 @@ export class ProductsPage extends PageObject {
     this.shoppingCart = page.locator('class="shopping_cart_link"');
   }
 
-  async openProduct(productName: ProductNames) {
+  async openProduct(productName: string) {
     await expect(this.page.locator(`//div[normalize-space()='${productName}']`)).toBeVisible();
     await this.page.locator(`//div[normalize-space()='${productName}']`).click();
   }
 
-  async addToProduct(cardName: ProductNames) {
+  async addToProduct(cardName: string) {
     await this.page.locator(`//div[normalize-space()='${cardName}']`).locator('Add to cart').click();
   }
 
