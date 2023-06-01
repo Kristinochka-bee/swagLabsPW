@@ -5,6 +5,7 @@ export class CartPage extends PageObject {
   protected readonly continueShoppingButton: Locator;
   protected readonly checkoutButton: Locator;
   protected readonly removeButton: Locator;
+  protected readonly yourCartTitle: Locator;
 
   constructor(page: Page) {
     super(page, '/');
@@ -22,5 +23,9 @@ export class CartPage extends PageObject {
   }
   async clickOnCheckoutButton() {
     await this.checkoutButton.click();
+  }
+
+  async checkUserOnCartPage() {
+    await this.yourCartTitle.isVisible();
   }
 }
