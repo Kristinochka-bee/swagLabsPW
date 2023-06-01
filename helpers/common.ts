@@ -23,6 +23,14 @@ export const productNames: string[] = [
   'Test.allTheThings() T-Shirt (Red)',
 ];
 
+export const productNamesAfterRemoveIndex1: string[] = [
+  'Sauce Labs Backpack',
+  'Sauce Labs Bolt T-Shirt',
+  'Sauce Labs Fleece Jacket',
+  'Sauce Labs Onesie',
+  'Test.allTheThings() T-Shirt (Red)',
+];
+
 export const defaultPassword = 'secret_sauce';
 
 export const takeScreenshotOfElement = async (selector: Locator, fileName: string) => {

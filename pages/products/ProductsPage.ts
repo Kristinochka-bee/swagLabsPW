@@ -32,4 +32,7 @@ export class ProductsPage extends PageObject {
   async selectSortOption(sortOption: SortOptions) {
     await this.page.locator("//select[@class='product_sort_container']").selectOption(sortOption);
   }
+  async goToCart() {
+    await this.shoppingCart.click();
+  }
 }
