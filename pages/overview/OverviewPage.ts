@@ -1,6 +1,11 @@
 import {PageObject} from '../PageObject';
 import {Locator, Page} from '@playwright/test';
 
+export const productPrices: string[] = [
+  '15.99',
+  '9.99',
+];
+
 export class OverviewPage extends PageObject {
   protected readonly overviewTitle: Locator;
   protected readonly itemTotal: Locator;
@@ -8,7 +13,7 @@ export class OverviewPage extends PageObject {
   protected readonly total: Locator;
   protected readonly finishButton: Locator;
   protected readonly cancelButton: Locator;
-
+  protected readonly itemsPrice: Locator;
   constructor(page: Page) {
     super(page, '/');
     this.overviewTitle = page.locator("//span[@class='title']");
@@ -16,6 +21,7 @@ export class OverviewPage extends PageObject {
     this.taxItem = page.locator("//div[@class='summary_tax_label']");
     this.total = page.locator("//div[@class='summary_info_label summary_total_label']");
     this.cancelButton = page.locator("//button[@id='cancel']");
+    this.itemsPrice = page.locator('//*[@class="inventory_item_price"]');
   }
   async checkUserOnOverviewPage() {
     await this.overviewTitle.isVisible();
@@ -28,4 +34,9 @@ export class OverviewPage extends PageObject {
   async clickOnCancelButton() {
     await this.cancelButton.click();
   }
+
+  async getItemsPrices(){
+    return await this.itemsPrice.allInnerTexts();
+  }
+
 }

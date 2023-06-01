@@ -1,5 +1,6 @@
 import {PageObject} from '../PageObject';
 import {Locator, Page} from '@playwright/test';
+import { expect} from '@playwright/test';
 
 export class CartPage extends PageObject {
   protected readonly continueShoppingButton: Locator;
