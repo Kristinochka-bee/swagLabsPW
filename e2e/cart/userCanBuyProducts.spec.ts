@@ -16,13 +16,11 @@ test.describe('User can add items in cart, delete items and buy products', async
       await productsPage.addToProduct(productName);
     }
     await productsPage.goToCart();
-
     await expect(await cartPage.getProductTitle(), 'Product title is not correct').toEqual(productNames);
     await cartPage.removeProduct('Sauce Labs Bike Light');
-    await expect(await cartPage.getProductTitle(), 'Product title is not correct').toEqual(
-      productNamesAfterRemoveIndex1);
+    await expect(await cartPage.getProductTitle(), 'Product title is not correct').toEqual(productNamesAfterRemoveIndex1);
 
-    await cartPage.clickContinueShoppingButton();
+    await cartPage.clickCheckoutButton();
     const paymentDataPage = new PaymentDataPage(page);
     await paymentDataPage.checkoutInformationFormIsVisible();
     await paymentDataPage.fillInformationFields();

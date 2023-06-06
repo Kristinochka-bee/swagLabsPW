@@ -8,15 +8,18 @@ export class CartPage extends PageObject {
   protected readonly yourCartText: Locator;
   protected readonly productsInCart: Locator;
   protected readonly cartsContainer: Locator;
+  protected readonly cartItem: Locator;
 
   constructor(page: Page) {
     super(page, '/cart.html');
-    this.continueShoppingButton = page.locator('//button[@id=continue-shopping]');
-    this.removeButton = page.locator('//button[@id=remove-sauce-labs-backpack]');
-    this.checkoutButton = page.locator('//button[@id=checkout]');
-    this.yourCartText = page.locator('//span[@class=title]');
+    this.continueShoppingButton = page.locator('//button[@id="continue-shopping"]');
+    this.removeButton = page.locator('//button[@id="remove-sauce-labs-backpack"]');
+    this.checkoutButton = page.locator('//button[@id="checkout"]');
+    this.yourCartText = page.locator('//span[@class="title"]');
     this.cartsContainer = page.locator('//div[@id=\'cart_contents_container\']');
-    this.productsInCart = this.cartsContainer.locator('//*[@class=inventory_item_name]');
+    this.cartItem = page.locator('//*[@class="cart_item"]');
+    this.productsInCart = this.cartItem.locator('//*[@class="inventory_item_name"]');
+
   }
 
   async clickContinueShoppingButton() {
@@ -35,7 +38,7 @@ export class CartPage extends PageObject {
   }
 
   async getProductTitle() {
-    await expect(this.cartsContainer).toBeVisible();
+    await expect(this.cartItem.first()).toBeVisible();
     return this.productsInCart.allInnerTexts();
   }
 
