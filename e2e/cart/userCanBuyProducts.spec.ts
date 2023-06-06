@@ -16,6 +16,7 @@ test.describe('User can add items in cart, delete items and buy products', async
       await productsPage.addToProduct(productName);
     }
     await productsPage.goToCart();
+    await cartPage.checkYourCartTextIsVisible();
     await expect(await cartPage.getProductTitle(), 'Product title is not correct').toEqual(productNames);
     await cartPage.removeProduct('Sauce Labs Bike Light');
     await expect(await cartPage.getProductTitle(), 'Product title is not correct').toEqual(productNamesAfterRemoveIndex1);
@@ -27,6 +28,7 @@ test.describe('User can add items in cart, delete items and buy products', async
     await paymentDataPage.clickContinueButton();
 
     const paymentInformationPage = new PaymentInformationPage(page);
+    await paymentInformationPage.checkCheckoutOverviewTextIsVisible();
     await paymentInformationPage.clickFinishButton();
   });
 });

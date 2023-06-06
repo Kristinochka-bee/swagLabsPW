@@ -6,7 +6,8 @@ export class PaymentInformationPage extends PageObject {
   protected readonly totalPriceWithTax: Locator;
   protected readonly cancelButton: Locator;
   protected readonly finishButton: Locator;
-  protected readonly itemTotalPrice: Locator;
+  protected readonly totalPrice: Locator;
+  protected readonly itemTotal: Locator;
 
   constructor(page: Page) {
     super(page, '/cart.html');
@@ -14,7 +15,8 @@ export class PaymentInformationPage extends PageObject {
     this.totalPriceWithTax = page.getByText('Total: $');
     this.cancelButton = page.locator("//button[@id='cancel']");
     this.finishButton = page.locator("//button[@id='finish']");
-    this.itemTotalPrice = page.getByText('Item total: $');
+    this.totalPrice = page.getByText('Item total: $');
+    this.itemTotal = page.getByText('Item total: $');
     //inventory_item_name - локатор, по которому можно вытащить текст всех товаров
   }
 
