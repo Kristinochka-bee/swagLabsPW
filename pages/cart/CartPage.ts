@@ -7,6 +7,7 @@ export class CartPage extends PageObject {
   protected readonly checkoutButton: Locator;
   protected readonly yourCartText: Locator;
   protected readonly productsInCart: Locator;
+  protected readonly cartsContainer: Locator;
 
   constructor(page: Page) {
     super(page, '/cart.html');
@@ -15,6 +16,7 @@ export class CartPage extends PageObject {
     this.checkoutButton = page.locator('//button[@id=checkout]');
     this.yourCartText = page.locator('//span[@class=title]');
     this.productsInCart = page.locator('//*[@id=inventory_item_name]');
+    this.cartsContainer = page.locator('//div[@id=\'cart_contents_container\']');
   }
 
   async clickContinueShoppingButton() {
@@ -29,10 +31,13 @@ export class CartPage extends PageObject {
   }
 
   async removeProduct(cardName: string) {
-    await this.page.locator(`${cardName}`).locator('Remove').click();
+    await this.page.locator(`//div[normalize-space()='${cardName}']/ancestor::*[@class="cart_item_label"]`).getByText('Remove').click();
+  //  /ancestor::*[@class="cart_item_label"]
   }
 
   async getProductTitle() {
+    await expect(this.cartsContainer).toBeVisible();
     return this.productsInCart.allInnerTexts();
   }
+
 }

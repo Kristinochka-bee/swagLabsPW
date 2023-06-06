@@ -17,7 +17,7 @@ export class ProductsPage extends PageObject {
     super(page, '/inventory.html');
     this.pageNameText = page.locator("//span[@class='title']");
     this.productsSortContainer = page.locator("//select[@class='product_sort_container']");
-    this.shoppingCart = page.locator('class="shopping_cart_link"');
+    this.shoppingCart = page.locator('//*[@class="shopping_cart_link"]');
   }
 
   async openProduct(productName: string) {
@@ -26,7 +26,8 @@ export class ProductsPage extends PageObject {
   }
 
   async addToProduct(cardName: string) {
-    await this.page.locator(`//div[normalize-space()='${cardName}']`).locator('Add to cart').click();
+    await expect(this.page.locator(`//div[normalize-space()='${cardName}']`)).toBeVisible();
+    await this.page.locator(`//div[normalize-space()='${cardName}']/ancestor::*[@class="inventory_item_description"]`).getByText('Add to cart').click();
   }
 
   async selectSortOption(sortOption: SortOptions) {
@@ -35,4 +36,6 @@ export class ProductsPage extends PageObject {
   async goToCart() {
     await this.shoppingCart.click();
   }
+
+
 }

@@ -37,12 +37,12 @@ export default defineConfig({
     {
       name: 'local chromium',
       use: {
-        viewport: {width: 1920, height: 1080},
+        viewport: {width: 1280, height: 720},
         browserName: 'chromium',
         video: 'on',
         trace: 'on',
         screenshot: 'on',
-        headless: true,
+        headless: false,
         launchOptions: {
           slowMo: 0,
         },
@@ -52,7 +52,7 @@ export default defineConfig({
     {
       name: 'local firefox',
       use: {
-        viewport: {width: 1920, height: 1080},
+        viewport: {width: 1280, height: 720},
         browserName: 'firefox',
         video: 'on',
         trace: 'on',

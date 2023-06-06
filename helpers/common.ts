@@ -14,6 +14,7 @@ export const getMaxDiffPixels = (width: number, height: number): number => {
 //   TEST = 'Test.allTheThings() T-Shirt (Red)',
 // }
 
+
 export const productNames: string[] = [
   'Sauce Labs Backpack',
   'Sauce Labs Bike Light',
