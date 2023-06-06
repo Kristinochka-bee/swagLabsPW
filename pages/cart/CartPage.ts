@@ -15,8 +15,8 @@ export class CartPage extends PageObject {
     this.removeButton = page.locator('//button[@id=remove-sauce-labs-backpack]');
     this.checkoutButton = page.locator('//button[@id=checkout]');
     this.yourCartText = page.locator('//span[@class=title]');
-    this.productsInCart = page.locator('//*[@id=inventory_item_name]');
     this.cartsContainer = page.locator('//div[@id=\'cart_contents_container\']');
+    this.productsInCart = this.cartsContainer.locator('//*[@class=inventory_item_name]');
   }
 
   async clickContinueShoppingButton() {
@@ -32,12 +32,12 @@ export class CartPage extends PageObject {
 
   async removeProduct(cardName: string) {
     await this.page.locator(`//div[normalize-space()='${cardName}']/ancestor::*[@class="cart_item_label"]`).getByText('Remove').click();
-  //  /ancestor::*[@class="cart_item_label"]
   }
 
   async getProductTitle() {
     await expect(this.cartsContainer).toBeVisible();
     return this.productsInCart.allInnerTexts();
   }
+
 
 }
