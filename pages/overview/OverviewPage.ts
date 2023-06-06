@@ -2,8 +2,8 @@ import {PageObject} from '../PageObject';
 import {Locator, Page} from '@playwright/test';
 
 export const productPrices: string[] = [
-  '15.99',
-  '9.99',
+  '$9.99',
+  '$15.99'
 ];
 
 export class OverviewPage extends PageObject {
@@ -22,6 +22,7 @@ export class OverviewPage extends PageObject {
     this.total = page.locator("//div[@class='summary_info_label summary_total_label']");
     this.cancelButton = page.locator("//button[@id='cancel']");
     this.itemsPrice = page.locator('//*[@class="inventory_item_price"]');
+    this.finishButton = page.locator('//button[@id="finish"]');
   }
   async checkUserOnOverviewPage() {
     await this.overviewTitle.isVisible();

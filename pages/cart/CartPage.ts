@@ -16,7 +16,7 @@ export class CartPage extends PageObject {
   }
 
   async removeProduct(cardName: string) {
-    await this.page.locator(`${cardName}`).locator('Remove').click();
+    await this.page.locator(`//div[normalize-space()='${cardName}']/ancestor::*[@class="cart_item_label"]`).getByText('Remove').click();
   }
 
   async openProductPage(cardName: string) {

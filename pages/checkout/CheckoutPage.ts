@@ -13,7 +13,7 @@ export class CheckoutPage extends PageObject {
     this.firstNameField = page.getByPlaceholder('First Name');
     this.lastNameField = page.getByPlaceholder('Last Name');
     this.zipPostalCodeField = page.getByPlaceholder('Zip/Postal Code');
-    this.continueButton = page.getByTestId('continue');
+    this.continueButton = page.getByRole('button', {name:'Continue'});
   }
 
   async fillUsersField(firstName: string, lastName: string, zipPostal: string) {
