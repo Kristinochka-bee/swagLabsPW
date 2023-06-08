@@ -30,6 +30,7 @@ export class ProductsPage extends PageObject {
   protected readonly productsSortContainer: Locator;
   protected readonly shoppingCart: Locator;
   protected readonly productsTitle: Locator;
+  protected readonly socialLinks : Locator;
 
   constructor(page: Page) {
     super(page, '/inventory.html');
@@ -37,6 +38,7 @@ export class ProductsPage extends PageObject {
     this.productsSortContainer = page.locator("//select[@class='product_sort_container']");
     this.shoppingCart = page.locator('//span[@class="shopping_cart_badge"]');
     this.productsTitle = page.locator('//div[@class="inventory_item_name"]');
+    this.socialLinks  = page.locator("//ul[@class='social']//a");
   }
 
   async openProduct(productName: string) {
@@ -60,5 +62,9 @@ export class ProductsPage extends PageObject {
   async getProductsTitle() {
     await expect(this.productsTitle.first()).toBeVisible();
     return await this.productsTitle.allInnerTexts();
+  }
+
+  async getSocialLinks(){
+    await this.socialLinks.allInnerTexts();
   }
 }

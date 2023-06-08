@@ -42,7 +42,7 @@ export default defineConfig({
         video: 'on',
         trace: 'on',
         screenshot: 'on',
-        headless: true,
+        headless: false,
         launchOptions: {
           slowMo: 0,
         },
