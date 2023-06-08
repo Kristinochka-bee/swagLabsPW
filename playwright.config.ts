@@ -37,7 +37,7 @@ export default defineConfig({
     {
       name: 'local chromium',
       use: {
-        viewport: {width: 1280, height: 720},
+        viewport: {width: 1920, height: 1080},
         browserName: 'chromium',
         video: 'on',
         trace: 'on',
@@ -52,7 +52,7 @@ export default defineConfig({
     {
       name: 'local firefox',
       use: {
-        viewport: {width: 1280, height: 720},
+        viewport: {width: 1920, height: 1080},
         browserName: 'firefox',
         video: 'on',
         trace: 'on',
