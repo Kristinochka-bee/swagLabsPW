@@ -27,11 +27,11 @@ export class PaymentDataPage extends PageObject {
     await this.continueButton.click();
   }
 
-  async checkoutInformationFormIsVisible() {
+  async checkoutInformationPageIsVisible() {
     await expect(this.checkoutInformation).toBeVisible();
   }
 
-  async fillInformationFields(firstName: string = 'Leo', lastName: string = 'Mikhailov', postCode: string = '123') {
+  async fillInformationFields(firstName, lastName, postCode) {
     await this.firstNameField.fill(firstName);
     await this.lastNameField.fill(lastName);
     await this.postCodeField.fill(postCode);
