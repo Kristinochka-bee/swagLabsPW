@@ -6,7 +6,7 @@ export class CheckoutPage extends PageObject {
   protected readonly lastNameField: Locator;
   protected readonly zipPostalCodeField: Locator;
   protected readonly continueButton: Locator;
-  protected readonly checkoutYourInformation: Locator;
+
 
   constructor(page: Page) {
     super(page, '/checkout-step-one.html');

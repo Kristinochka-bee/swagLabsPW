@@ -67,4 +67,6 @@ export class ProductsPage extends PageObject {
   async getSocialLinks(){
     await this.socialLinks.allInnerTexts();
   }
+
+
 }

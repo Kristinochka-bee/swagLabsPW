@@ -6,9 +6,14 @@ import {OverviewPage, productPrices} from "../../../pages/overview/OverviewPage"
 import {CheckoutPage} from "../../../pages/checkout/CheckoutPage";
 import { expect} from '@playwright/test';
 import {CompletePage} from "../../../pages/сomplete/CompletePage";
+import {faker} from "@faker-js/faker";
 
 test.describe('Add product in cart and checkout', async () => {
   test('User can add items in cart and checkout', async ({page}) => {
+    const firstName= faker.name.firstName();
+    const lastName= faker.name.lastName();
+    const postCode= faker.address.zipCode();
+
     await loginTestHelper(page, 'standard_user');
 
     const productsPage = new ProductsPage(page);
@@ -17,15 +22,21 @@ test.describe('Add product in cart and checkout', async () => {
     const checkoutPage = new CheckoutPage(page);
     const completePage = new CompletePage(page);
 
-    await productsPage.addToProduct('Sauce Labs Bike Light');
-    await productsPage.addToProduct('Sauce Labs Bolt T-Shirt');
-    await productsPage.addToProduct('Sauce Labs Onesie');
+    //for (let i= 0; i < 3; i++ ){
+    //  await productsPage.addToProduct(productNames[i]);
+    //}
+    await productsPage.addToProduct(productNames[1]);
+    await productsPage.addToProduct(productNames[2]);
+    await productsPage.addToProduct(productNames[4]);
 
     await productsPage.clickOnShoppingCartLink();
-    await cartPage.removeProduct('Sauce Labs Onesie');
+    await expect(cartPage.getProductsTitleByIndex()).toEqual([productNames[1],productNames[2],productNames[4]]);
+    await cartPage.removeProduct(productNames[4]);
+    await expect(cartPage.getProductsTitleByIndex()).toEqual([productNames[1],productNames[2]]);
+
     await cartPage.clickOnCheckoutButton();
     await expect(page).toHaveURL('/checkout-step-one.html');
-    await checkoutPage.fillUsersField('Alex', 'Spigel', '44444');
+    await checkoutPage.fillUsersField(firstName,lastName, postCode);
     await checkoutPage.clickOnContinueButton();
 
     await overviewPage.checkUserOnOverviewPage();
