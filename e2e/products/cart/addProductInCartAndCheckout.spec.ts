@@ -30,9 +30,9 @@ test.describe('Add product in cart and checkout', async () => {
     await productsPage.addToProduct(productNames[4]);
 
     await productsPage.clickOnShoppingCartLink();
-    await expect(cartPage.getProductsTitleByIndex()).toEqual([productNames[1],productNames[2],productNames[4]]);
+    await expect(await cartPage.getProductTitle()).toEqual([productNames[1],productNames[2],productNames[4]]);
     await cartPage.removeProduct(productNames[4]);
-    await expect(cartPage.getProductsTitleByIndex()).toEqual([productNames[1],productNames[2]]);
+    await expect(await cartPage.getProductTitle()).toEqual([productNames[1],productNames[2]]);
 
     await cartPage.clickOnCheckoutButton();
     await expect(page).toHaveURL('/checkout-step-one.html');
