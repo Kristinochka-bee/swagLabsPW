@@ -14,9 +14,18 @@ export const getMaxDiffPixels = (width: number, height: number): number => {
 //   TEST = 'Test.allTheThings() T-Shirt (Red)',
 // }
 
+
 export const productNames: string[] = [
   'Sauce Labs Backpack',
   'Sauce Labs Bike Light',
+  'Sauce Labs Bolt T-Shirt',
+  'Sauce Labs Fleece Jacket',
+  'Sauce Labs Onesie',
+  'Test.allTheThings() T-Shirt (Red)',
+];
+
+export const productNamesAfterRemoveIndex1: string[] = [
+  'Sauce Labs Backpack',
   'Sauce Labs Bolt T-Shirt',
   'Sauce Labs Fleece Jacket',
   'Sauce Labs Onesie',
