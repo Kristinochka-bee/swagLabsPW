@@ -23,11 +23,9 @@ test.describe('User can add items in cart, delete items and buy products', async
     }
     await productsPage.goToCart();
     await cartPage.checkYourCartTextIsVisible();
-    await expect(await cartPage.getProductTitle(), 'Product title is not correct').toEqual(productNames);
+    expect(await cartPage.getProductTitle(), 'Product title is not correct').toEqual(productNames);
     await cartPage.removeProduct('Sauce Labs Bike Light');
-    await expect(await cartPage.getProductTitle(), 'Product title is not correct').toEqual(
-      productNamesAfterRemoveIndex1
-    );
+    expect(await cartPage.getProductTitle(), 'Product title is not correct').toEqual(productNamesAfterRemoveIndex1);
 
     await cartPage.clickCheckoutButton();
     const paymentDataPage = new PaymentDataPage(page);
@@ -37,6 +35,15 @@ test.describe('User can add items in cart, delete items and buy products', async
 
     const paymentInformationPage = new PaymentInformationPage(page);
     await paymentInformationPage.checkCheckoutOverviewTextIsVisible();
+
+    // TODO: сделать эти же проверки через переменные с эталонными данными
+
+    // Эти проверки вытягивают данные со страницы (ожидаемый результат):
+    expect(paymentInformationPage.getSumOfPrices(), ' ').toEqual(paymentInformationPage.getItemTotalPrice());
+    expect(paymentInformationPage.getTotalWithTax(), ' ').toEqual(
+      paymentInformationPage.countItemTotalWithoutTaxPlusTax()
+    );
+
     await paymentInformationPage.clickFinishButton();
 
     const completePage = new CompletePage(page);
