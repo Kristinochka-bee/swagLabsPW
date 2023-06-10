@@ -9,6 +9,8 @@ export class CartPage extends PageObject {
   protected readonly productsInCart: Locator;
   protected readonly cartsContainer: Locator;
   protected readonly cartItem: Locator;
+  protected readonly productsTitle: Locator;
+
 
   constructor(page: Page) {
     super(page, '/cart.html');
@@ -18,6 +20,7 @@ export class CartPage extends PageObject {
     this.yourCartText = page.locator('//span[@class="title"]');
     this.cartsContainer = page.locator('//div[@id=\'cart_contents_container\']');
     this.cartItem = page.locator('//*[@class="cart_item"]');
+    this.productsTitle = page.locator('//*[@class="inventory_item_name"]');
     this.productsInCart = this.cartItem.locator('//*[@class="inventory_item_name"]');
 
   }
@@ -28,6 +31,10 @@ export class CartPage extends PageObject {
 
   async clickCheckoutButton() {
     await this.checkoutButton.click();
+  }
+
+  async openProductPage(cardName: string) {
+    await this.page.locator(`${cardName}`).locator("//div[@class='inventory_item_name']").click();
   }
   async checkYourCartTextIsVisible() {
     await expect(this.yourCartText).toBeVisible();
@@ -41,6 +48,5 @@ export class CartPage extends PageObject {
     await expect(this.cartItem.first()).toBeVisible();
     return this.productsInCart.allInnerTexts();
   }
-
 
 }
