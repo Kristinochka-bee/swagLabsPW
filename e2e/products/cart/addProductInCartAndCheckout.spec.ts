@@ -34,7 +34,7 @@ test.describe('Add product in cart and checkout', async () => {
     await cartPage.removeProduct(productNames[4]);
     await expect(await cartPage.getProductTitle()).toEqual([productNames[1],productNames[2]]);
 
-    await cartPage.clickOnCheckoutButton();
+    await cartPage.clickCheckoutButton();
     await expect(page).toHaveURL('/checkout-step-one.html');
     await checkoutPage.fillUsersField(firstName,lastName, postCode);
     await checkoutPage.clickOnContinueButton();
